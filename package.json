@@ -1,1 +1,32 @@
-{"name":"odesvia","version":"0.1.0","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"eslint .","db:migrate":"tsx scripts/migrate.ts"},"dependencies":{"@libsql/client":"^0.18.0","@types/node":"^24.0.0","@types/react":"^19.0.0","@types/react-dom":"^19.0.0","bcryptjs":"^3.0.3","eslint":"^9.0.0","eslint-config-next":"^16.0.0","jose":"^6.2.13","next":"^16.0.0","react":"^19.0.0","react-dom":"^19.0.0","typescript":"^5.9.0","zod":"^4.6.7"},"devDependencies":{"tsx":"^4.23.15"}}
+{
+  "name": "odesvia",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:verify": "tsx scripts/verify-preview.ts"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.18.0",
+    "@next/env": "^16.4.3",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "bcryptjs": "^3.0.3",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.0.0",
+    "jose": "^6.2.13",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.9.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}
