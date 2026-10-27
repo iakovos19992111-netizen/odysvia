@@ -1,0 +1,2 @@
+import type {MetadataRoute} from "next";import {properties,experiences,destinations} from "./data";
+export default function sitemap():MetadataRoute.Sitemap{const base="https://odesvia.com";return["","/stays","/destinations","/experiences","/explore","/about","/privacy"].map(path=>({url:base+path,lastModified:new Date()})).concat(properties.map(p=>({url:`${base}/stays/${p.slug}`,lastModified:new Date()})),experiences.map(e=>({url:`${base}/experiences/${e.slug}`,lastModified:new Date()})),destinations.map(d=>({url:`${base}/destinations/${d.slug}`,lastModified:new Date()})))}

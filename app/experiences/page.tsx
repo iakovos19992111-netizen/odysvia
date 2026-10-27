@@ -1,0 +1,3 @@
+import {experiences} from "../data";import {ExperiencesExplorer} from "../interactive";
+export const metadata={title:"Experiences",description:"Private boat trips, food, wine, wellness and adventures in Crete."};
+export default function Experiences(){return <main><section className="section alt"><div className="container"><span className="eyebrow">Meet the island</span><h1 style={{fontSize:"4.5rem",margin:"5px 0 20px"}}>Unforgettable experiences</h1><p style={{maxWidth:600}}>Made memorable by the people who know Crete best.</p></div></section><section className="section"><div className="container"><ExperiencesExplorer items={experiences}/></div></section></main>}

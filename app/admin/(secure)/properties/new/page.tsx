@@ -1,0 +1,1 @@
+import {PropertyEditor} from "../../../property-editor";export default function NewProperty(){return <><div className="admin-top"><div><span className="eyebrow">Portfolio</span><h1>Add property</h1></div></div><PropertyEditor/></>}

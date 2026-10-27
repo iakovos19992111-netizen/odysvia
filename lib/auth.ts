@@ -1,0 +1,7 @@
+import {compare} from "bcryptjs";import {SignJWT,jwtVerify} from "jose";import {cookies} from "next/headers";import {redirect} from "next/navigation";
+const COOKIE="odesvia_admin";const secret=()=>{const value=process.env.ODESVIA_SESSION_SECRET;if(!value||value.length<32)throw new Error("ODESVIA_SESSION_SECRET must contain at least 32 characters");return new TextEncoder().encode(value)};
+export async function authenticate(email:string,password:string){const expectedEmail=process.env.ODESVIA_ADMIN_EMAIL;const hash=process.env.ODESVIA_ADMIN_PASSWORD_HASH;if(!expectedEmail||!hash)return false;return email.toLowerCase()===expectedEmail.toLowerCase()&&await compare(password,hash)}
+export async function createAdminSession(email:string){const token=await new SignJWT({email,role:"admin"}).setProtectedHeader({alg:"HS256"}).setIssuedAt().setExpirationTime("8h").sign(secret());(await cookies()).set(COOKIE,token,{httpOnly:true,secure:process.env.NODE_ENV==="production",sameSite:"strict",path:"/",maxAge:60*60*8})}
+export async function getAdmin(){const token=(await cookies()).get(COOKIE)?.value;if(!token)return null;try{const {payload}=await jwtVerify(token,secret());return payload.role==="admin"&&typeof payload.email==="string"?{email:payload.email}:null}catch{return null}}
+export async function requireAdmin(){const admin=await getAdmin();if(!admin)redirect("/admin/login");return admin}
+export async function clearAdminSession(){(await cookies()).delete(COOKIE)}
