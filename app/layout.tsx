@@ -1,3 +1,3 @@
-import type {Metadata} from "next";import "./globals.css";import {NavAwareHeader,Footer} from "./components";
+import type {Metadata} from "next";import "./globals.css";import "./interactive.css";import {NavAwareHeader,Footer} from "./components";
 export const metadata:Metadata={metadataBase:new URL("https://odesvia.com"),title:{default:"ODESVIA | Premium stays in Crete",template:"%s | ODESVIA"},description:"Handpicked villas, authentic experiences and considered travel in Crete.",openGraph:{title:"ODESVIA",description:"Inspired by Crete. Crafted for Memories.",type:"website"}};
 export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body><NavAwareHeader/>{children}<Footer/></body></html>}
