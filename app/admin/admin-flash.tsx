@@ -1,0 +1,1 @@
+"use client";import {useSearchParams} from "next/navigation";export function AdminFlash(){const params=useSearchParams(),error=params.get("error"),success=params.get("success");if(!error&&!success)return null;return <p role={error?"alert":"status"} className={`admin-alert ${error?"error":"success"}`}>{error||success}</p>}

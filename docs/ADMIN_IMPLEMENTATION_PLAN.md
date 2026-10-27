@@ -49,7 +49,17 @@ Confirmed reservation and availability ranges use `[check_in, check_out)` semant
 
 ## Deployment requirements
 
-Vercel must receive the five variables above through encrypted project settings. The remote database schema is initialized by the application idempotently. Preview and production must use separate databases and secrets. No email, payment or paid service is required for this phase.
+Local SQLite is suitable for development, but it is not durable on Vercel's ephemeral filesystem. Vercel must use a remote libSQL-compatible database and receive the five variables above through encrypted project settings. The application refuses to use a `file:` database when `VERCEL` is present.
+
+Preview and production must use separate databases, tokens and session secrets. After configuring the database variables, initialize or update the schema with:
+
+```bash
+npm run db:migrate
+```
+
+Schema creation is idempotent. Back up production data before future destructive migrations. Current migrations only create missing tables, triggers and columns. No database, email, payment or storage service is provisioned automatically.
+
+Uploaded preview images are limited to 2 MB each and stored as data URLs in the database. This is functional for a small private catalogue. Before storing a large image library, connect approved object storage and retain only its HTTPS URLs in `properties.images`.
 
 ## Delivery stages
 
